@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string.h>
+#define pi 3.14
+using namespace std;
+class shape
+{
+    public:
+    virtual float area()=0;
+};
+class circle:public shape
+{
+private:
+    float r;
+public:
+    circle(float a)
+    {
+        r=a;
+    }
+    float area()
+    {
+        return pi*r*r;
+    }
+};
+class ellipse:public shape
+{
+protected:
+    float a,b;
+public:
+    ellipse(float a1,float b1)
+    {
+        a=a1;
+        b=b1;
+    }
+    float area()
+    {
+        return pi*a*b;
+    }
+};
+class rectangle:public shape
+{
+private:
+    float w,h;
+public:
+    rectangle(float a,float b)
+    {
+        w=a;
+        h=b;
+    }
+    float area()
+    {
+        return w*h;
+    }
+};
+float total(shape *s[])
+{
+    float sum=0;
+    for(int i=0;i<3;i++)
+    {
+        sum=sum+s[i]->area();
+        return sum;
+    }
+}
+int main()
+{
+    shape *s[3];
+    float r,a,b,w,h;
+    cout<<"please input the data of r circle"<<endl;
+    cin>>r;
+    circle ss(r);
+    cout<<"please input the data of a,b ellipse"<<endl;
+    cin>>a>>b;
+    ellipse tt(a,b);
+    cout<<"please input the data of w,h rectangle"<<endl;
+    cin>>w>>h;
+    rectangle gg(w,h);
+    s[0]=new circle(r);
+    s[1]=new ellipse(a,b);
+    s[2]=new rectangle(w,h);
+    cout<<"total of area shape are "<<total(s)<<endl;
+    return 0;
+}
