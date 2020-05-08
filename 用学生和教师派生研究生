@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class student
+{
+private:
+    int num;
+    char name[20];
+    float score;
+public:
+    student(int a,char *p,float s)
+    {
+        num=a;
+        strcpy(name,p);
+        score=s;
+    }
+    void show()
+    {
+        cout<<num<<","<<name<<","<<score<<endl;
+    }
+};
+class teacher
+{
+private:
+    int tnum;
+    char zw[20];
+public:
+    teacher(int x,char *y)
+    {
+        tnum=x;
+        strcpy(zw,y);
+    }
+    void show()
+    {
+        cout<<tnum
+<<","<<zw<<endl;
+    }
+};
+class gradute:public student,public teacher
+{
+private:
+    char xm[20];
+public:
+    gradute(char *m,int a,char *p,float s,int x,char *y):student(a,p,s),teacher(x,y)
+    {
+        strcpy(xm,m);
+    }
+    void show()
+    {
+        cout<<xm<<endl;
+    }
+};
+int main()
+{
+    gradute ss("systerm",101,"yang",78.5,202,"wang");
+    ss.student::show();
+    ss.teacher::show();
+    ss.show();
+    return 0;
+}
