@@ -1,0 +1,29 @@
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+template<class T1,class T2>
+T1 *add(T1 *p1,T2 *p2,int n)  //定义类函数模版
+{
+    T1 *p=p1;
+    for(int i=0; i<n; i++)
+    {
+        *p1=*p1+*p2;
+        p1++;
+        p2++;
+    }
+    return p;
+}
+int main()
+{
+    double a[]= {3,9,6,5,4,2};
+    double b[]= {1.2,77,3.4,0.7,2.45,6.2};
+     cout<<"The result are "<<endl;
+     double *p=add(a,b,6);
+    for(int i=0;i<6;i++)
+    {
+        cout<<*p<<endl;
+        p++;
+    }
+    return 0;
+}
