@@ -1,0 +1,70 @@
+#include <iostream>
+#define pi 3.14
+using namespace std;
+class point
+{
+private:
+    float x,y;
+public:
+    point(float a,float b)
+    {
+        x=a;
+        y=b;
+    }
+    virtual float area()
+    {
+        return 0;
+    }
+    virtual float volume()
+    {
+        return 0;
+    }
+};
+class circle:public point
+{
+protected:
+    float r;
+public:
+    circle(float a,float b,float rr):point(a,b)
+    {
+        r=rr;
+    }
+    float area()
+    {
+        return r*r*pi;
+    }
+    float vulume()
+    {
+        return 0;
+    }
+
+};
+class cylider:public circle
+{
+protected:
+    float h;
+public:
+    cylider(float a,float b,float rr,float d):circle(a,b,rr)
+    {
+        h=d;
+    }
+    float area()
+    {
+        return (2*circle::area()+h*pi*r);
+    }
+    float volume()
+    {
+        return (circle::area()*h);
+    }
+};
+int main()
+{
+    point *p;
+    circle c1(2.0,3.0,5);
+    cylider c2(2.0,3.0,5,5);
+    p=&c1;
+    cout<<p->area()<<" "<<p->volume()<<endl;
+    p=&c2;
+    cout<<p->area()<<" "<<p->volume()<<endl;
+    return 0;
+}
